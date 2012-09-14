@@ -1,0 +1,73 @@
+# == Class: virtualbox::params
+#
+# === Authors
+#
+# Jochen Schalanda <j.schalanda@smarchive.de>
+#
+# === Copyright
+#
+# Copyright 2012 smarchive GmbH
+#
+class virtualbox::params {
+  $repo_name = $::virtualbox_repo_name ? {
+    undef   => 'virtualbox',
+    default => $::virtualbox_repo_name
+  }
+
+  $repo_baseurl = $::virtualbox_repo_baseurl ? {
+    undef   => $::osfamily ? {
+      'RedHat' => 'http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch',
+      'Debian' => 'http://download.virtualbox.org/virtualbox/debian',
+      default  => fail("${::osfamily} is not supported by ${module_name}")
+    },
+    default => $::virtualbox_repo_baseurl
+  }
+
+  $repo_key = $::virtualbox_repo_key ? {
+    undef   => '98AB5139',
+    default => $::virtualbox_repo_key
+  }
+
+  $repo_key_source = $::virtualbox_repo_key_source ? {
+    undef   => $::osfamily ? {
+      /(RedHat|Debian)/ => 'http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc',
+      default           => fail("${::osfamily} is not supported by ${module_name}")
+    },
+    default => $::virtualbox_repo_key_source
+  }
+
+  $repo_repos = $::virtualbox_repo_repos ? {
+    undef   => 'contrib non-free',
+    default => $::virtualbox_repo_release
+  }
+
+  $repo_release = $::virtualbox_repo_release ? {
+    undef   => $::lsbdistcodename,
+    default => $::virtualbox_repo_release
+  }
+
+  $repo_pin = $::virtualbox_repo_pin ? {
+    undef   => 200,
+    default => $::virtualbox_repo_pin
+  }
+
+  $repo_gpgcheck = $::virtualbox_repo_gpgcheck ? {
+    undef   => 1,
+    default => $::virtualbox_repo_gpgcheck
+  }
+
+  $repo_enabled = $::virtualbox_repo_enabled ? {
+    undef   => 1,
+    default => $::virtualbox_repo_enabled
+  }
+
+  $package = $::virtualbox_package ? {
+    undef   => 'virtualbox-4.2',
+    default => $::virtualbox_package
+  }
+
+  $version = $::virtualbox_version ? {
+    undef   => 'installed',
+    default => $::virtualbox_version
+  }
+}
