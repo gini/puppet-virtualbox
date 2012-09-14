@@ -15,10 +15,10 @@ class virtualbox::params {
   }
 
   $repo_baseurl = $::virtualbox_repo_baseurl ? {
-    undef   => $::osfamily ? {
-      'RedHat' => 'http://download.virtualbox.org/virtualbox/rpm/el/$releasever/$basearch',
-      'Debian' => 'http://download.virtualbox.org/virtualbox/debian',
-      default  => fail("${::osfamily} is not supported by ${module_name}")
+    undef   => $::operatingsystem ? {
+      'Fedora'          => 'http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch',
+      /(Ubuntu|Debian)/ => 'http://download.virtualbox.org/virtualbox/debian',
+      default           => fail("${::operatingsystem} is not supported by ${module_name}")
     },
     default => $::virtualbox_repo_baseurl
   }
