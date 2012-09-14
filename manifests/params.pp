@@ -61,8 +61,14 @@ class virtualbox::params {
     default => $::virtualbox_repo_enabled
   }
 
+  $dist_package = $::osfamily ? {
+    'RedHat' => 'VirtualBox-4.2',
+    'Debian' => 'virtualbox-4.2',
+    default  => fail("${::osfamily} is not supported by ${module_name}")
+  }
+
   $package = $::virtualbox_package ? {
-    undef   => 'virtualbox-4.2',
+    undef   => $dist_package,
     default => $::virtualbox_package
   }
 
