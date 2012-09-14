@@ -86,15 +86,15 @@ class virtualbox(
   }
 
   class { 'virtualbox::repo':
-    $repo_name  = $repo_name_real,
-    $baseurl    = $repo_baseurl_real,
-    $key        = $repo_key_real,
-    $key_source = $repo_key_source_real,
-    $repos      = $repo_repos_real,
-    $release    = $repo_release_real,
-    $pin        = $repo_pin_real,
-    $gpgcheck   = $repo_gpgcheck_real,
-    $enabled    = $repo_enabled_real,
+    repo_name  => $repo_name_real,
+    baseurl    => $repo_baseurl_real,
+    key        => $repo_key_real,
+    key_source => $repo_key_source_real,
+    repos      => $repo_repos_real,
+    release    => $repo_release_real,
+    pin        => $repo_pin_real,
+    gpgcheck   => $repo_gpgcheck_real,
+    enabled    => $repo_enabled_real,
   }
 
   package { $package:
