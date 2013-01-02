@@ -19,7 +19,7 @@ Example:
 License
 -------
 
-Copyright (c) 2012 smarchive GmbH
+Copyright (c) 2012, 2013 smarchive GmbH
 
 This script is licensed under the Apache License, Version 2.0.
 
