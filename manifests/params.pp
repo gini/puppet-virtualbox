@@ -17,6 +17,7 @@ class virtualbox::params {
   $repo_baseurl = $::virtualbox_repo_baseurl ? {
     undef   => $::operatingsystem ? {
       'Fedora'          => 'http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch',
+	  'Centos'          => 'http://download.virtualbox.org/virtualbox/rpm/rhel/$releasever/$basearch',
       /(Ubuntu|Debian)/ => 'http://download.virtualbox.org/virtualbox/debian',
       default           => fail("${::operatingsystem} is not supported by ${module_name}")
     },
