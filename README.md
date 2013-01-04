@@ -16,6 +16,13 @@ Example:
 
     class { 'virtualbox': }
 
+
+Contributors
+------------
+
+Daniel Kuffner (chilicat), https://github.com/chilicat
+
+
 License
 -------
 
@@ -24,6 +31,7 @@ Copyright (c) 2012, 2013 smarchive GmbH
 This script is licensed under the Apache License, Version 2.0.
 
 See http://www.apache.org/licenses/LICENSE-2.0.html for the full license text.
+
 
 Support
 -------
