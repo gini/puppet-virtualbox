@@ -20,7 +20,8 @@ Example:
 Contributors
 ------------
 
-Daniel Kuffner (chilicat), https://github.com/chilicat
+* Daniel Kuffner (chilicat), https://github.com/chilicat
+* Alex Rodionov (p0deje), https://github.com/p0deje
 
 
 License
