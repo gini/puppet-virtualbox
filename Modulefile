@@ -1,5 +1,5 @@
 name         'puppet-virtualbox'
-version      '0.2.1'
+version      '0.2.2'
 author       'Jochen Schalanda'
 license      'Apache 2.0'
 project_page 'https://github.com/smarchive/puppet-virtualbox'
