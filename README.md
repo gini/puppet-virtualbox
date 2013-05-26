@@ -22,6 +22,7 @@ Contributors
 
 * Daniel Kuffner (chilicat), https://github.com/chilicat
 * Alex Rodionov (p0deje), https://github.com/p0deje
+* Dennis (shr3kst3r), https://github.com/shr3kst3r
 
 
 License
