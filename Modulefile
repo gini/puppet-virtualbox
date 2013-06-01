@@ -1,4 +1,4 @@
-name         'puppet-virtualbox'
+name         'smarchive-virtualbox'
 version      '0.2.2'
 author       'Jochen Schalanda'
 license      'Apache 2.0'
