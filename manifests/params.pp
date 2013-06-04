@@ -43,7 +43,10 @@ class virtualbox::params {
   }
 
   $repo_release = $::virtualbox_repo_release ? {
-    undef   => $::lsbdistcodename,
+    undef   => $::osfamily ? {
+      'RedHat' => $::operatingsystemrelease,
+      'Debian' => $::lsbdistcodename,
+    },
     default => $::virtualbox_repo_release
   }
 
