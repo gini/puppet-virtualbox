@@ -20,5 +20,6 @@ class virtualbox::repo::redhat(
     gpgkey   => $gpgkey,
     gpgcheck => $gpgcheck,
     enabled  => $enabled,
+    descr    => 'Oracle VirtualBox',
   }
 }
