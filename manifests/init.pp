@@ -99,6 +99,6 @@ class virtualbox(
 
   package { $package_real:
     ensure  => $version_real,
-    require => Class['virtualbox::repo'],
+    require => Class["virtualbox::repo::$osfamily"],
   }
 }
