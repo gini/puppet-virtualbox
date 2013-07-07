@@ -19,6 +19,10 @@ class virtualbox::repo(
   $gpgcheck,
   $enabled,
 ) {
+
+  anchor { 'virtualbox::repo::begin': }
+  anchor { 'virtualbox::repo::end': }
+
   case $::osfamily {
     'Debian': {
       class { 'virtualbox::repo::debian':
@@ -29,6 +33,8 @@ class virtualbox::repo(
         key        => $key,
         key_source => $key_source,
         pin        => $pin,
+        require => Anchor['virtualbox::repo::begin'],
+        before => Anchor['virtualbox::repo::end'],
       }
     }
     'RedHat': {
@@ -38,6 +44,8 @@ class virtualbox::repo(
         gpgkey    => $key_source,
         gpgcheck  => $gpgcheck,
         enabled   => $enabled,
+        require => Anchor['virtualbox::repo::begin'],
+        before => Anchor['virtualbox::repo::end'],
       }
     }
     default:  { fail("${::osfamily} is not supported by ${module_name}") }
