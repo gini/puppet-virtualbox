@@ -45,7 +45,15 @@ class virtualbox::params {
   $repo_release = $::virtualbox_repo_release ? {
     undef   => $::osfamily ? {
       'RedHat' => $::operatingsystemrelease,
-      'Debian' => $::lsbdistcodename,
+      'Debian' => $::operatingsystem ? {
+        /Ubuntu|Debian/ => $::lsbdistcodename,
+        'LinuxMint'        => $::lsbdistcodename ? {
+          'olivia'  => 'raring',
+          'petra'   => 'saucy',
+          'qiana'   => 'trusty',
+          'default' => fail("LinuxMint ${::lsbdistcodename} is not supported by ${module_name}")
+        }
+      }
     },
     default => $::virtualbox_repo_release
   }
