@@ -6,6 +6,7 @@
 #   - Fedora Linux
 #   - Debian Linux
 #   - Ubuntu Linux
+#   - Linux Mint
 #
 # === Authors
 #
