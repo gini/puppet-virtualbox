@@ -16,10 +16,10 @@ class virtualbox::params {
 
   $repo_baseurl = $::virtualbox_repo_baseurl ? {
     undef   => $::operatingsystem ? {
-      'Fedora'          => 'http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch',
-      'Centos'          => 'http://download.virtualbox.org/virtualbox/rpm/rhel/$releasever/$basearch',
-      /(Ubuntu|Debian)/ => 'http://download.virtualbox.org/virtualbox/debian',
-      default           => fail("${::operatingsystem} is not supported by ${module_name}")
+      'Fedora'                    => 'http://download.virtualbox.org/virtualbox/rpm/fedora/$releasever/$basearch',
+      'Centos'                    => 'http://download.virtualbox.org/virtualbox/rpm/rhel/$releasever/$basearch',
+      /(Ubuntu|Debian|LinuxMint)/ => 'http://download.virtualbox.org/virtualbox/debian',
+      default                     => fail("${::operatingsystem} is not supported by ${module_name}")
     },
     default => $::virtualbox_repo_baseurl
   }
@@ -45,7 +45,15 @@ class virtualbox::params {
   $repo_release = $::virtualbox_repo_release ? {
     undef   => $::osfamily ? {
       'RedHat' => $::operatingsystemrelease,
-      'Debian' => $::lsbdistcodename,
+      'Debian' => $::operatingsystem ? {
+        /Ubuntu|Debian/ => $::lsbdistcodename,
+        'LinuxMint'        => $::lsbdistcodename ? {
+          'olivia'  => 'raring',
+          'petra'   => 'saucy',
+          'qiana'   => 'trusty',
+          'default' => fail("LinuxMint ${::lsbdistcodename} is not supported by ${module_name}")
+        }
+      }
     },
     default => $::virtualbox_repo_release
   }
